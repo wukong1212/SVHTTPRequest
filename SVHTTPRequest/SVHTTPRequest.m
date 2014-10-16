@@ -156,6 +156,13 @@ static NSTimeInterval SVHTTPRequestTimeoutInterval = 20;
     return requestObject;
 }
 
++ (SVHTTPRequest*)PUT:(NSString *)address parameters:(NSObject *)parameters progress:(void (^)(float))progressBlock completion:(void (^)(id, NSHTTPURLResponse*, NSError *))completionBlock {
+    SVHTTPRequest *requestObject = [[self alloc] initWithAddress:address method:SVHTTPRequestMethodPUT parameters:parameters saveToPath:nil progress:progressBlock completion:completionBlock];
+    [requestObject start];
+    
+    return requestObject;
+}
+
 + (SVHTTPRequest*)DELETE:(NSString *)address parameters:(NSDictionary *)parameters completion:(SVHTTPRequestCompletionHandler)block {
     SVHTTPRequest *requestObject = [[self alloc] initWithAddress:address method:SVHTTPRequestMethodDELETE parameters:parameters saveToPath:nil progress:nil completion:block];
     [requestObject start];
@@ -525,7 +532,7 @@ static NSTimeInterval SVHTTPRequestTimeoutInterval = 20;
 }
 
 - (void)connection:(NSURLConnection *)connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite {
-    if(self.operationProgressBlock && [self.operationRequest.HTTPMethod isEqualToString:@"POST"]) {
+    if(self.operationProgressBlock && ([self.operationRequest.HTTPMethod isEqualToString:@"POST"] || [self.operationRequest.HTTPMethod isEqualToString:@"PUT"])) {
         self.operationProgressBlock((float)totalBytesWritten/(float)totalBytesExpectedToWrite);
     }
 }

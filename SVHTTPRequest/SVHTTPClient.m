@@ -90,6 +90,10 @@
     return [self queueRequest:path method:SVHTTPRequestMethodPUT parameters:parameters saveToPath:nil progress:nil completion:completionBlock];
 }
 
+- (SVHTTPRequest*)PUT:(NSString*)path parameters:(NSDictionary*)parameters progress:(void (^)(float progress))progressBlock completion:(void (^)(id response, NSHTTPURLResponse *urlResponse, NSError *error))completionBlock{
+    return [self queueRequest:path method:SVHTTPRequestMethodPUT parameters:parameters saveToPath:nil progress:progressBlock completion:completionBlock];
+}
+
 - (SVHTTPRequest*)DELETE:(NSString *)path parameters:(NSDictionary *)parameters completion:(SVHTTPRequestCompletionHandler)completionBlock {
     return [self queueRequest:path method:SVHTTPRequestMethodDELETE parameters:parameters saveToPath:nil progress:nil completion:completionBlock];
 }

@@ -541,6 +541,8 @@ static NSTimeInterval SVHTTPRequestTimeoutInterval = 20;
     dispatch_group_notify(self.saveDataDispatchGroup, self.saveDataDispatchQueue, ^{
         
         id response = [NSData dataWithData:self.operationData];
+        
+        /*
         NSError *error = nil;
         
         if ([[self.operationURLResponse MIMEType] isEqualToString:@"application/json"]) {
@@ -553,6 +555,9 @@ static NSTimeInterval SVHTTPRequestTimeoutInterval = 20;
         }
         
         [self callCompletionBlockWithResponse:response error:error];
+        */
+        
+        [self callCompletionBlockWithResponse:response error:nil];
     });
 }
 

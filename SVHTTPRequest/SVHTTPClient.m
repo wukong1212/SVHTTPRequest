@@ -14,12 +14,7 @@
 
 @property (nonatomic, strong) NSOperationQueue *operationQueue;
 
-- (SVHTTPRequest*)queueRequest:(NSString*)path
-                        method:(SVHTTPRequestMethod)method
-                    parameters:(NSDictionary*)parameters
-                    saveToPath:(NSString*)savePath
-                      progress:(void (^)(float))progressBlock
-                    completion:(SVHTTPRequestCompletionHandler)completionBlock;
+
 
 @property (nonatomic, strong) NSMutableDictionary *HTTPHeaderFields;
 

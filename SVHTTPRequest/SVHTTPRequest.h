@@ -12,14 +12,6 @@
 
 #import "SVHTTPClient.h"
 
-enum {
-	SVHTTPRequestMethodGET = 0,
-    SVHTTPRequestMethodPOST,
-    SVHTTPRequestMethodPUT,
-    SVHTTPRequestMethodDELETE,
-    SVHTTPRequestMethodHEAD
-};
-typedef NSUInteger SVHTTPRequestMethod;
 
 @interface SVHTTPRequest : NSOperation
 

@@ -9,6 +9,15 @@
 
 #import <Foundation/Foundation.h>
 
+enum {
+    SVHTTPRequestMethodGET = 0,
+    SVHTTPRequestMethodPOST,
+    SVHTTPRequestMethodPUT,
+    SVHTTPRequestMethodDELETE,
+    SVHTTPRequestMethodHEAD
+};
+typedef NSUInteger SVHTTPRequestMethod;
+
 typedef void (^SVHTTPRequestCompletionHandler)(id response, NSHTTPURLResponse *urlResponse, NSError *error);
 
 @class SVHTTPRequest;
@@ -31,6 +40,13 @@ typedef void (^SVHTTPRequestCompletionHandler)(id response, NSHTTPURLResponse *u
 
 - (SVHTTPRequest*)DELETE:(NSString*)path parameters:(NSDictionary*)parameters completion:(SVHTTPRequestCompletionHandler)completionBlock;
 - (SVHTTPRequest*)HEAD:(NSString*)path parameters:(NSDictionary*)parameters completion:(SVHTTPRequestCompletionHandler)completionBlock;
+
+- (SVHTTPRequest*)queueRequest:(NSString*)path
+                        method:(SVHTTPRequestMethod)method
+                    parameters:(NSDictionary*)parameters
+                    saveToPath:(NSString*)savePath
+                      progress:(void (^)(float))progressBlock
+                    completion:(SVHTTPRequestCompletionHandler)completionBlock;
 
 - (void)cancelRequestsWithPath:(NSString*)path;
 - (void)cancelAllRequests;
